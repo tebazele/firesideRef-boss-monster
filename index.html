@@ -15,17 +15,17 @@
     <title>Boss Monster Fireside</title>
 </head>
 
-<body class="bg-img">
+<body class="bg-img cool-font">
     <header class="container-fluid">
-        <!-- SECTION buttons go here -->
         <section class="row justify-content-around bg-elephant">
-            <div class="col-6 py-2">
-                <!-- hero stats: money, health, damage -->
+            <div class="col-2 py-2">
+                <!-- SECTION hero stats: money, health, damage -->
                 <div class="d-flex align-items-center">
                     <h1 class="pe-2">🪙 </h1>
                     <h4 id="money-elem">0</h4>
 
                 </div>
+
                 <div class="d-flex align-items-center">
                     <h1 class="pe-2"><i class="mdi mdi-heart text-danger"></i>
 
@@ -33,29 +33,65 @@
                     <h4 id="hero-health-elem">400</h4>
 
                 </div>
-                <div class="d-flex align-items-center">
+                <div class="d-flex">
                     <img src="images/superball.png" alt="damage icon" class="pokeball-icon pe-2" />
                     <h4 id="hero-damage-elem">0</h4>
                 </div>
 
             </div>
-            <div class="col-6">
-                <!-- companions  -->
-                <button class="btn btn-light">Mew</button>
+            <div class="col-md-2 col-4 py-4 align-items-center">
+                <!-- SECTION companions  -->
+                <div class="d-flex align-items-center">
+                    <img src="images/mew.png" alt="mew companion" class="companion-icon pe-3">
+                    <button class="btn btn-light">Mew</button>
+                </div>
+                <div class="text-center">
+                    <span>🪙 150</span>
+                    <br>
+                    <span>+5 damage</span>
+
+                </div>
+            </div>
+            <div class="col-md-2 col-4 py-4">
+
+                <div class="d-flex align-items-center">
+                    <img src="images/squirtle.png" alt="mew companion" class="companion-icon pe-3">
+                    <button class="btn btn-light">Squirtle</button>
+                </div>
+                <div class="text-center">
+                    <span>🪙 200</span>
+                    <br>
+                    <span>+10 damage</span>
+
+                </div>
+            </div>
+            <div class="col-md-2 col-4 py-4">
+
+                <div class="d-flex align-items-center">
+                    <img src="images/evee.png" alt="mew companion" class="companion-icon pe-3">
+                    <button class="btn btn-light">Evee</button>
+                </div>
+                <div class="text-center">
+                    <span>🪙 1000</span>
+                    <br>
+                    <span>+100 damage</span>
+
+                </div>
+            </div>
             </div>
         </section>
     </header>
     <main class="container-fluid">
         <!-- SECTION boss vs hero goes here -->
         <section class="row justify-content-around text-center align-items-baseline">
-            <div class="col-5 py-5">
+            <div class="col-5 py-5" id="hero-container">
                 <img src="images/pikachu.png" alt="hero pikachu" class="character-image">
             </div>
             <div class="col-2">
                 <h1 class="fs-huge text-danger">VS.</h1>
             </div>
-            <div class="col-5 py-5">
-                <img src="images/collab_pokemon_catalog_charizard-min.png" alt="hero pikachu" class="character-image">
+            <div class="col-5 py-5" id="boss-container">
+                <img src="images/dragon.png" alt="hero pikachu" class="character-image">
             </div>
         </section>
     </main>

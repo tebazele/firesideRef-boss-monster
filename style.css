@@ -32,6 +32,10 @@
     height: 40px;
 }
 
+.companion-icon {
+    height: 80px;
+}
+
 /* SECTION positioning */
 
 main {
@@ -40,5 +44,13 @@ main {
 
 footer {
     height: 160px;
-    margin-top: -200px;
+    margin-top: -220px;
+}
+
+.pos-rel {
+    position: relative;
+}
+
+.pos-abs {
+    position: absolute;
 }
