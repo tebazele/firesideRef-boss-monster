@@ -1,0 +1,44 @@
+/* SECTION text styles */
+.cool-font {
+    font-family: 'Shantell Sans', cursive;
+}
+
+.fs-huge {
+    font-size: 72px;
+}
+
+/* SECTION background colors */
+
+.bg-translucent {
+    background-color: rgba(229, 226, 226, 0.758);
+}
+
+.bg-elephant {
+    background-color: rgba(128, 128, 128, 0.747);
+}
+
+/* SECTION image styles */
+.bg-img {
+    background-image: url('images/pokemon_background.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.character-image {
+    max-height: 48vh;
+}
+
+.pokeball-icon {
+    height: 40px;
+}
+
+/* SECTION positioning */
+
+main {
+    min-height: 90vh;
+}
+
+footer {
+    height: 160px;
+    margin-top: -200px;
+}
