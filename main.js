@@ -16,7 +16,7 @@ const boss = {
     level: 1,
     image: "images/"
 }
-
+// NOTE take this out init setup
 const companions = [
     {
         name: "Mew",
@@ -59,36 +59,43 @@ function drawHeroStats() {
     heroDamageElem.innerText = hero.damage.toString();
 
     if (hero.health <= 0) {
-        clearInterval(bossInterval);
-        // clearInterval(mewInterval)
-        // setTimeout(() => {
-        //     window.alert('Your pokemon fainted!')
-        // }, 200);
+        stopIntervals()
+        setTimeout(() => {
+            window.alert('Your pokemon fainted!')
+        }, 200);
         document.getElementById('hero-container').classList.add('faint');
     }
-
-
-
-
 }
 
+function stopIntervals() {
+    clearInterval(bossInterval);
+    // NOTE take this out for initial setup
+    clearInterval(companionsInterval);
 
+}
 
 function drawBossStats() {
     let bossStatsTemplate = '';
     bossStatsTemplate += `<h2 class="m-0">${boss.name}</h2>
             <h2>${boss.health}</h2>
             
-            <div class="progress" role="progressbar" aria-label="Danger striped progress bar" aria-valuenow="${Math.round(boss.health / boss.maxHealth * 100)}"
+            <div class="progress" role="progressbar" aria-label="Danger striped progress bar" aria-valuenow="${boss.health / boss.maxHealth * 100}"
                 aria-valuemin="0" aria-valuemax="${boss.maxHealth}">
-                <div class="progress-bar progress-bar-striped bg-danger" style="width: ${Math.round(boss.health / boss.maxHealth * 100)}%"></div>
+                <div class="progress-bar progress-bar-striped bg-danger" style="width: ${boss.health / boss.maxHealth * 100}%"></div>
             </div>`
 
     document.getElementById('bossStats-container').innerHTML = bossStatsTemplate;
+
+    if (boss.health <= 0) {
+        stopIntervals()
+        setTimeout(() => {
+            window.alert('You won!')
+        }, 200);
+    }
 }
 
 
-
+// NOTE take this out init setup
 function drawCompanions() {
     let companionTemplate = '';
 
@@ -96,7 +103,7 @@ function drawCompanions() {
         companionTemplate += `<div class="py-4">
                     <div class="d-flex align-items-center">
                         <img src="images/${companion.image}" alt="mew companion" class="companion-icon pe-3">
-                        <button class="btn btn-light">Add Mew</button>
+                        <button onclick="addCompanion('${companion.name}')" class="btn btn-light">Add ${companion.name}</button>
                     </div>
                     <div class="p-1 mt-1">
                         <span>🪙 ${companion.price}</span>
@@ -114,31 +121,40 @@ function drawCompanions() {
 // SECTION game logic
 
 function hitBoss() {
-    boss.health -= 5;
-    money += 5;
-    drawBossStats();
-    drawHeroStats();
-}
-
-function addMew() {
-    if (money >= 100) {
-        let mew = companions.find(c => c.name == "Mew");
-        mew.quantity++
-        money -= 100;
-        let mewInterval = setInterval(() => {
-
-            boss.health -= mew.quantity * mew.damage
-            console.log('mew interval set. Damage:', mew.quantity * mew.damage)
-            drawBossStats()
-        }, 2000)
-
-        if (hero.health <= 0) {
-            clearInterval(mewInterval)
-        }
+    if (boss.health > 0) {
+        boss.health -= 5;
+        money += 10;
+        drawBossStats();
         drawHeroStats();
     }
 }
 
+// NOTE take this out init setup
+// function addMew() {
+//     if (money >= 100) {
+//         let mew = companions.find(c => c.name == "Mew");
+//         mew.quantity++
+//         money -= 100;
+//         let mewInterval = setInterval(() => {
+
+//             boss.health -= mew.quantity * mew.damage
+//             console.log('mew interval set. Damage:', mew.quantity * mew.damage)
+//             drawBossStats()
+//         }, 2000)
+//         drawHeroStats();
+//     }
+// }
+
+// NOTE take this out init setup
+function addCompanion(name) {
+    console.log(name)
+    let currentCompanion = companions.find(comp => comp.name == name);
+
+    if (money >= currentCompanion.price) {
+        currentCompanion.quantity++
+        money -= currentCompanion.price;
+    }
+}
 
 // SECTION boss damage interval
 let bossInterval = setInterval(() => {
@@ -146,22 +162,22 @@ let bossInterval = setInterval(() => {
     hero.health -= 50;
     drawHeroStats()
 
-}, 2000)
+}, 3000)
 
 // SECTION companions damage interval
 
-// let companionsInterval = setInterval(() => {
+let companionsInterval = setInterval(() => {
 
-//     let totalDamage = 0
-//     companions.forEach(c => {
-//         totalDamage += c.damage * c.quantity
-//     })
-//     console.log('companion interval set', totalDamage)
-//     boss.health -= totalDamage;
-// }, 2000)
+    let totalDamage = 0
+    companions.forEach(c => {
+        totalDamage += c.damage * c.quantity
+    })
+    console.log('companion interval set', totalDamage)
+    boss.health -= totalDamage;
+}, 2000)
 
 // SECTION call draw functions on page load
 drawHero()
 drawHeroStats()
 drawBossStats()
-// drawCompanions()
+drawCompanions()
