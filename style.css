@@ -36,6 +36,10 @@
     height: 80px;
 }
 
+.hand-cursor {
+    cursor: pointer;
+}
+
 /* SECTION positioning */
 
 main {
