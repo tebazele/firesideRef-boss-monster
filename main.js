@@ -4,7 +4,6 @@ const hero = {
     name: "Pikachu",
     damage: 5,
     health: 500,
-    gold: 0,
     image: "pikachu.png"
 }
 
@@ -16,7 +15,6 @@ const boss = {
     level: 1,
     image: "dragon.png"
 }
-
 
 function drawHero() {
     let heroTemplate = '';
@@ -46,7 +44,6 @@ function drawHeroStats() {
 
 function stopInterval() {
     clearInterval(bossInterval);
-
 }
 
 function drawBossStats() {
@@ -68,8 +65,6 @@ function drawBossStats() {
         }, 200);
     }
 }
-
-
 
 // SECTION game logic
 
@@ -96,4 +91,5 @@ let bossInterval = setInterval(() => {
 drawHero()
 drawHeroStats()
 drawBossStats()
+
 
