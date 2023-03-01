@@ -60,12 +60,6 @@ function drawBossStats() {
 
     document.getElementById('bossStats-container').innerHTML = bossStatsTemplate;
 
-    if (boss.health <= 0) {
-        stopInterval()
-        setTimeout(() => {
-            window.alert('You won!')
-        }, 200);
-    }
 }
 
 
