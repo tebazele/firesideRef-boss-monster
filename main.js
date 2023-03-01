@@ -14,8 +14,9 @@ const boss = {
     maxHealth: 1000,
     damage: 5,
     level: 1,
-    image: "images/"
+    image: "dragon.png"
 }
+
 
 function drawHero() {
     let heroTemplate = '';
@@ -60,6 +61,12 @@ function drawBossStats() {
 
     document.getElementById('bossStats-container').innerHTML = bossStatsTemplate;
 
+    if (boss.health <= 0) {
+        stopInterval()
+        setTimeout(() => {
+            window.alert('You won!')
+        }, 200);
+    }
 }
 
 
