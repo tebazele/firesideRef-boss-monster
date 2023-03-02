@@ -35,7 +35,7 @@ function drawHeroStats() {
     if (hero.health <= 0) {
         stopInterval()
         setTimeout(() => {
-            window.alert('Your pokemon fainted!')
+            // window.alert('Your pokemon fainted!')
         }, 200);
         document.getElementById('hero-container').classList.add('faint');
     }
@@ -56,7 +56,7 @@ function drawBossStats() {
     if (boss.health <= 0) {
         stopInterval()
         setTimeout(() => {
-            window.alert('You won!')
+            // window.alert('You won!')
         }, 200);
     }
 }
