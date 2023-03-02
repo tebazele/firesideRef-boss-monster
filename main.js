@@ -17,8 +17,7 @@ const boss = {
 }
 
 function drawHero() {
-    let heroTemplate = '';
-    heroTemplate += `<img src="images/${hero.image}" alt="hero pikachu" class="character-image">`
+    let heroTemplate = `<img src="images/${hero.image}" alt="hero pikachu" class="character-image">`
 
     document.getElementById('hero-container').innerHTML = heroTemplate;
 }
@@ -40,10 +39,6 @@ function drawHeroStats() {
         }, 200);
         document.getElementById('hero-container').classList.add('faint');
     }
-}
-
-function stopInterval() {
-    clearInterval(bossInterval);
 }
 
 function drawBossStats() {
@@ -85,6 +80,10 @@ let bossInterval = setInterval(() => {
     drawHeroStats()
 
 }, 3000)
+
+function stopInterval() {
+    clearInterval(bossInterval);
+}
 
 
 // SECTION call draw functions on page load
