@@ -16,6 +16,7 @@ const boss = {
     image: "dragon.png"
 }
 
+// NOTE added one companion but we need more
 // const mew = {
 //     name: 'Mew',
 //     image: 'mew.png',
@@ -48,6 +49,7 @@ const companions = [
     }
 ]
 
+// NOTE I could have just hardcoded this in, but I used a function to draw it to the page
 function drawHero() {
     let heroTemplate = `<img src="images/${hero.image}" alt="hero pikachu" class="character-image">`
 
@@ -55,6 +57,7 @@ function drawHero() {
 }
 
 function drawHeroStats() {
+    // NOTE drawing the money element to the page
     let moneyElem = document.getElementById('money-elem');
     let heroHealthElem = document.getElementById('heroHealth-elem');
     let heroDamageElem = document.getElementById('heroDamage-elem');
@@ -107,7 +110,7 @@ function hitBoss() {
     }
 
 }
-// NOTE write resuable code!
+// NOTE let's write resuable code!
 // function addMew() {
 //     if (money >= 100) {
 //         money -= 100;
@@ -120,9 +123,10 @@ function hitBoss() {
 //         // }, 2000)
 //     }
 // }
-// NOTE takes in a name 
+// NOTE takes in a companion name as an argument
 function addCompanion(name) {
     console.log(name)
+    // @ts-ignore
     let currentCompanion = companions.find(companion => companion.damage == name);
     if (money >= currentCompanion.price) {
         currentCompanion.level++
@@ -143,6 +147,7 @@ function addCompanion(name) {
 // }
 
 // SECTION boss damage interval
+// NOTE setting your interval equal to a variable allows you to clear it later; both intervals start on page load
 let bossInterval = setInterval(() => {
     console.log('boss interval set')
     hero.health -= 50;
@@ -152,6 +157,7 @@ let bossInterval = setInterval(() => {
 
 let companionsInterval = setInterval(() => {
     let totalDamage = 0;
+    // @ts-ignore
     companions.forEach(c => {
         totalDamage += c.damage * c.level
     })
