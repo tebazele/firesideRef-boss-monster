@@ -16,6 +16,38 @@ const boss = {
     image: "dragon.png"
 }
 
+// const mew = {
+//     name: 'Mew',
+//     image: 'mew.png',
+//     price: 100,
+//     damage: 10,
+//     level: 1
+// }
+
+const companions = [
+    {
+        name: "Mew",
+        image: "mew.png",
+        price: 100,
+        damage: 10,
+        level: 1
+    },
+    {
+        name: "Squirtle",
+        image: "squirtle.png",
+        price: 150,
+        damage: 15,
+        level: 1
+    },
+    {
+        name: "Evee",
+        image: "evee.png",
+        price: 300,
+        damage: 20,
+        level: 1
+    }
+]
+
 function drawHero() {
     let heroTemplate = `<img src="images/${hero.image}" alt="hero pikachu" class="character-image">`
 
@@ -29,13 +61,15 @@ function drawHeroStats() {
 
     // @ts-ignore
     moneyElem.innerText = money;
+    // @ts-ignore
     heroHealthElem.innerText = hero.health.toString();
+    // @ts-ignore
     heroDamageElem.innerText = hero.damage.toString();
 
     if (hero.health <= 0) {
         stopInterval()
         setTimeout(() => {
-            // window.alert('Your pokemon fainted!')
+            window.alert('Your pokemon fainted!')
         }, 200);
         document.getElementById('hero-container').classList.add('faint');
     }
@@ -43,6 +77,7 @@ function drawHeroStats() {
 
 function drawBossStats() {
     let bossStatsTemplate = '';
+    // NOTE reference for progress bar
     bossStatsTemplate += `<h2 class="m-0">${boss.name}</h2>
             <h2>${boss.health}</h2>
             
@@ -56,7 +91,7 @@ function drawBossStats() {
     if (boss.health <= 0) {
         stopInterval()
         setTimeout(() => {
-            // window.alert('You won!')
+            window.alert('You won!')
         }, 200);
     }
 }
@@ -72,6 +107,40 @@ function hitBoss() {
     }
 
 }
+// NOTE write resuable code!
+// function addMew() {
+//     if (money >= 100) {
+//         money -= 100;
+//         drawHeroStats();
+//         // NOTE don't do this -- not ideal
+//         // let mewInterval = setInterval(() => {
+//         //     boss.health -= mew.damage
+//         //     console.log('mew interval set. Damage:', mew.damage);
+//         //     drawBossStats()
+//         // }, 2000)
+//     }
+// }
+// NOTE takes in a name 
+function addCompanion(name) {
+    console.log(name)
+    let currentCompanion = companions.find(companion => companion.damage == name);
+    if (money >= currentCompanion.price) {
+        currentCompanion.level++
+        money -= currentCompanion.price;
+        drawHeroStats();
+    }
+}
+
+// NOTE takes in multiple arguments (probably not necessary, but possible)
+// function addCompanion(name, damage, price, level) {
+//     console.log(name, damage, price, level)
+//     let currentCompanion = companions.find(companion => companion.damage == name);
+//     if (money >= price) {
+//         currentCompanion.level++
+//         money -= price;
+//         drawHeroStats();
+//     }
+// }
 
 // SECTION boss damage interval
 let bossInterval = setInterval(() => {
@@ -81,8 +150,20 @@ let bossInterval = setInterval(() => {
 
 }, 3000)
 
+let companionsInterval = setInterval(() => {
+    let totalDamage = 0;
+    companions.forEach(c => {
+        totalDamage += c.damage * c.level
+    })
+    console.log('companion interval set. Damage: ', totalDamage);
+    boss.health -= totalDamage;
+    drawBossStats()
+
+}, 2000)
+
 function stopInterval() {
     clearInterval(bossInterval);
+    clearInterval(companionsInterval);
 }
 
 
